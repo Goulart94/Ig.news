@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import {GetServerSideProps} from 'next';
+
 import {GetStaticProps} from 'next'
 
 import SubscribeButton from '../components/SubscribeButton';

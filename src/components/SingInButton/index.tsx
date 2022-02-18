@@ -9,7 +9,7 @@ export default function SingInButton() {
 
   const { data: session } = useSession()
 
-  console.log(session);
+
 
   return session ?
   (
