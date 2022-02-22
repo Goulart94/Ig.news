@@ -4,8 +4,8 @@ import { api } from './api';
 import { NextApiRequest, NextApiResponse } from "next";
 import {Readable} from "stream";
 import { stripe } from '../../services/stripe';
-import { FaBlackberry } from 'react-icons/fa';
-import { saveSubscription } from './_lib/manageSubscription';
+
+
 
 async function buffer(readable:Readable) {
     const chunks = [];
@@ -43,19 +43,14 @@ export default async (req: NextApiRequest, res: NextApiResponse)=>{
         return res.status(400).send(`webhooks error: ${err.message}` );
      }
     
-     const type = event.type
+     const type = event.type;
 
      if(relevantEvent.has(type)){
          
         try{
             switch(type){
                 case 'checkout.session.completed':
-                    const checkoutSession = event.data.object as Stripe.Checkout.Session
                     
-                    await saveSubscription(
-                        checkoutSession.subscription.toString(),
-                        checkoutSession.customer.toString()
-                    )
 
                    
                 break;
@@ -66,7 +61,7 @@ export default async (req: NextApiRequest, res: NextApiResponse)=>{
 
         }catch(err){
            
-            return res.status(400).json({err : 'webhooks fail'})
+            return res.json({err : 'webhooks fail'})
         }
 
      }

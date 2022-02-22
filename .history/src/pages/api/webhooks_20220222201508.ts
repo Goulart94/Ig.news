@@ -47,27 +47,7 @@ export default async (req: NextApiRequest, res: NextApiResponse)=>{
 
      if(relevantEvent.has(type)){
          
-        try{
-            switch(type){
-                case 'checkout.session.completed':
-                    const checkoutSession = event.data.object as Stripe.Checkout.Session
-                    
-                    await saveSubscription(
-                        checkoutSession.subscription.toString(),
-                        checkoutSession.customer.toString()
-                    )
-
-                   
-                break;
-                default:
-                    throw new Error('unHandle event.');
-                    
-            }
-
-        }catch(err){
-           
-            return res.status(400).json({err : 'webhooks fail'})
-        }
+       console.log('Evento recebido', event)
 
      }
 

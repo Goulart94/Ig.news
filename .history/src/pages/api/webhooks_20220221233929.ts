@@ -4,7 +4,7 @@ import { api } from './api';
 import { NextApiRequest, NextApiResponse } from "next";
 import {Readable} from "stream";
 import { stripe } from '../../services/stripe';
-import { FaBlackberry } from 'react-icons/fa';
+
 import { saveSubscription } from './_lib/manageSubscription';
 
 async function buffer(readable:Readable) {
@@ -43,7 +43,7 @@ export default async (req: NextApiRequest, res: NextApiResponse)=>{
         return res.status(400).send(`webhooks error: ${err.message}` );
      }
     
-     const type = event.type
+     const type = event.type;
 
      if(relevantEvent.has(type)){
          
@@ -66,7 +66,7 @@ export default async (req: NextApiRequest, res: NextApiResponse)=>{
 
         }catch(err){
            
-            return res.status(400).json({err : 'webhooks fail'})
+            return res.json({err : 'webhooks fail'})
         }
 
      }
