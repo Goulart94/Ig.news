@@ -28,8 +28,8 @@ export const config = {
 const relevantEvent = new Set([
     
         'checkout.session.completed',
-        'customer.subscription.updated',
-        'customer.subscription.deleted',
+        'custome.subscription.updated',
+        'custome.subscription.deleted',
 
 
 ]);
